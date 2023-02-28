@@ -1,6 +1,7 @@
 import React from 'react';
 import {TextInput, View, TouchableOpacity, Text} from 'react-native';
 import {Formik} from 'formik';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {loginShema} from './loginValidation';
 import {styles} from './Input.styles';
@@ -19,29 +20,35 @@ function Input() {
               <Text style={styles.alertText}>{errors.email}</Text>
             ) : null}
           </View>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={handleChange('email')}
-            onBlur={handleBlur('email')}
-            value={values.email}
-            placeholder="Plese enter your email"
-            placeholderTextColor={'white'}
-          />
+          <View style={styles.textInputContainer}>
+            <Icon name={'account'} size={20} color={'#DC8449'} style={styles.icon}/>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              value={values.email}
+              placeholder="Plese enter your email"
+              placeholderTextColor={'white'}
+            />
+          </View>
           <View style={styles.labelContainer}>
             <Text style={styles.label}>Password</Text>
             {errors.password && touched.password ? (
               <Text style={styles.alertText}>{errors.password}</Text>
             ) : null}
           </View>
-          <TextInput
-            style={styles.textInput}
-            secureTextEntry
-            onChangeText={handleChange('password')}
-            onBlur={handleBlur('password')}
-            value={values.password}
-            placeholder="Plese enter your password"
-            placeholderTextColor={'white'}
-          />
+          <View style={styles.textInputContainer}>
+            <Icon name={'key'} size={20} color={'#DC8449'} style={styles.icon}/>
+            <TextInput
+              style={styles.textInput}
+              secureTextEntry
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+              value={values.password}
+              placeholder="Plese enter your password"
+              placeholderTextColor={'white'}
+            />
+          </View>
 
           <TouchableOpacity
             onPress={handleSubmit}

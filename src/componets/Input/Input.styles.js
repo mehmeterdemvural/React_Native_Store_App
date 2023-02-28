@@ -14,19 +14,21 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'right',
   },
+  textInputContainer: {flexDirection: 'row', backgroundColor: '#4E6E81', alignItems: 'center',     borderRadius: 5,},
   textInput: {
-    backgroundColor: '#4E6E81',
-    borderRadius: 10,
     color: 'white',
     height: 30,
     fontSize: 12,
     padding: 5,
+    flex:1
   },
+  icon:{paddingLeft: 5, width:25},
   buttonContainer: {
     backgroundColor: '#4E6E81',
     alignItems: 'center',
     borderRadius: 10,
     marginVertical: 25,
+    height:40, justifyContent: 'center'
   },
   buttonText: {color: '#DC8449', fontWeight: 'bold', fontSize: 25},
 });

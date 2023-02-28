@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import Products from './pages/Products';
 import Detail from './pages/Detail';
+import Login from './pages/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,6 +12,22 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen
+          name="LoginPage"
+          component={Login}
+          options={{
+            title: 'Login',
+            headerStyle: {
+              backgroundColor: '#4E6E81',
+            },
+            headerTitleStyle: {
+              color: '#DC8449',
+            },
+            headerTitleAlign: 'center',
+            statusBarColor: '#4E6E81',
+            navigationBarColor: '#4E6E81'
+          }}
+        />
         <Stack.Screen
           name="ProductsPage"
           component={Products}
@@ -24,6 +41,7 @@ function App() {
             },
             headerTitleAlign: 'center',
             statusBarColor: '#4E6E81',
+            navigationBarColor: '#4E6E81'
           }}
         />
         <Stack.Screen
@@ -38,10 +56,11 @@ function App() {
               color: '#DC8449',
             },
             headerTitleAlign: 'center',
-            headerTintColor: 'white',
             statusBarColor: '#4E6E81',
+            navigationBarColor: '#4E6E81'
           }}
         />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

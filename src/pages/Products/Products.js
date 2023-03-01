@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
+import {SafeAreaView, FlatList, Button} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import {REACT_APP_API_URL} from '@env';
 import ProductCard from '../../componets/ProductCard';
@@ -12,6 +13,7 @@ import {styles} from './Products.styles';
 function Products({navigation}) {
   const {loading, fetchData, error} = useFetch(REACT_APP_API_URL);
   const [searchArea, setSearchArea] = useState('');
+  const dispatch = useDispatch();
 
   const handleProductSelect = id => {
     navigation.navigate('DetailPage', id);
@@ -35,14 +37,18 @@ function Products({navigation}) {
     return itemTitle.indexOf(searchText) > -1;
   });
 
-
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar setSearchArea={setSearchArea} />
+      <Button
+        title="Logout"
+        onPress={() => dispatch({type: 'SET_USER', payload: {user: null}})}
+      />
       <FlatList
         data={filtred}
         renderItem={renderProduct}
         style={styles.flatList}
+        contentContainerStyle={{paddingBottom: 30}}
       />
     </SafeAreaView>
   );

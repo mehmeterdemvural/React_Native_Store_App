@@ -1,33 +1,44 @@
 import React from 'react';
-import {TextInput, View, TouchableOpacity, Text} from 'react-native';
+import {
+  TextInput,
+  View,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import {Formik} from 'formik';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {loginShema} from './loginValidation';
 import {styles} from './Input.styles';
 
-function Input() {
+function Input({handleSubmit, loading}) {
   return (
     <Formik
-      initialValues={{email: '', password: ''}}
-      onSubmit={values => console.log(values)}
+      initialValues={{username: '', password: ''}}
+      onSubmit={handleSubmit}
       validationSchema={loginShema}>
       {({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
         <View style={styles.container}>
           <View style={styles.labelContainer}>
-            <Text style={styles.label}>Email</Text>
-            {errors.email && touched.email ? (
-              <Text style={styles.alertText}>{errors.email}</Text>
+            <Text style={styles.label}>username</Text>
+            {errors.username && touched.username ? (
+              <Text style={styles.alertText}>{errors.username}</Text>
             ) : null}
           </View>
           <View style={styles.textInputContainer}>
-            <Icon name={'account'} size={20} color={'#DC8449'} style={styles.icon}/>
+            <Icon
+              name={'account'}
+              size={20}
+              color={'#DC8449'}
+              style={styles.icon}
+            />
             <TextInput
               style={styles.textInput}
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              value={values.email}
-              placeholder="Plese enter your email"
+              onChangeText={handleChange('username')}
+              onBlur={handleBlur('username')}
+              value={values.username}
+              placeholder="Plese enter your username"
               placeholderTextColor={'white'}
             />
           </View>
@@ -38,7 +49,12 @@ function Input() {
             ) : null}
           </View>
           <View style={styles.textInputContainer}>
-            <Icon name={'key'} size={20} color={'#DC8449'} style={styles.icon}/>
+            <Icon
+              name={'key'}
+              size={20}
+              color={'#DC8449'}
+              style={styles.icon}
+            />
             <TextInput
               style={styles.textInput}
               secureTextEntry
@@ -53,7 +69,11 @@ function Input() {
           <TouchableOpacity
             onPress={handleSubmit}
             style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Submit</Text>
+            {loading ? (
+              <ActivityIndicator color={'white'} />
+            ) : (
+              <Text style={styles.buttonText}>Submit</Text>
+            )}
           </TouchableOpacity>
         </View>
       )}
